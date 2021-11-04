@@ -1,6 +1,7 @@
+import { Result } from './../../models/result.models';
 import { ApisigaService } from './../../services/apisiga.service';
 import { Component, OnInit } from '@angular/core';
-import { Dados } from 'src/app/models/api.models';
+import { Dado } from 'src/app/models/dado.models';
 
 @Component({
   selector: 'app-result',
@@ -9,8 +10,9 @@ import { Dados } from 'src/app/models/api.models';
 })
 export class ResultComponent implements OnInit {
 
-  dados?:Array<Dados>
+  result?:Result
   error?: any
+  
   constructor(
     private ApisigaService: ApisigaService,
     
@@ -23,15 +25,22 @@ export class ResultComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+
   getApi() {
     this.ApisigaService.getDados().subscribe(
-      (data: Dados) => {
-        this.dados = data
-        console.log("test", data)
-      }, (error: any) => {
-        this.error = error
-        console.error(error)
-      })
+      (data: Result) => {
+        this.result = data
+        this.result= data
+        if(data.sucess){
+          console.log("test", data)
+        }else{
+          console.error(data.msg)
+        }
+        
+      }
+    )}
   }
 
-}
+
+

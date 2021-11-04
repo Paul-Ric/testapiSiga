@@ -1,6 +1,8 @@
-<div *ngFor= 'let i of dados'>
-    <h1></h1>  
+<div *ngFor= 'let i of result?.placa'>
+    
+   <p>{{i.placa}}</p>
+    <!--<img [src]="getDataLogo(logo)"  width="200px">-->
 </div>
 
 
-<pre>{{dados | json}}</pre>
+<pre>{{result | json}}</pre>
