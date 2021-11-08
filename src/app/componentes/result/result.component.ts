@@ -10,32 +10,27 @@ import { Dado } from 'src/app/models/dado.models';
 })
 export class ResultComponent implements OnInit {
 
-  result?:Result
+  result: Result
   error?: any
   
   constructor(
-    private ApisigaService: ApisigaService,
-    
-
+    private ApisigaService: ApisigaService
   ) {
+    this.result = new Result();
     this.getApi()
-
   }
 
   ngOnInit(): void {
   }
 
-  
-
   getApi() {
     this.ApisigaService.getDados().subscribe(
       (data: Result) => {
-        this.result = data
-        this.result= data
-        if(data.sucess){
+       this.result = data       
+        if(data.success) {
           console.log("test", data)
-        }else{
-          console.error(data.msg)
+        } else {
+          console.log(data.msg)
         }
         
       }
